@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - NimbusPay{% endblock %}
+
+{% block content %}
+<!-- Changes Saved confirmation banner (shown via query param) -->
+{% if request.args.get('saved') %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    Changes saved successfully.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+
+<h2>Dashboard</h2>
+<p class="text-muted">Welcome back, {{ user.name }}! Here is your account overview.</p>
+
+<hr>
+
+<!-- ==================== INVOICES (Must-have, top priority) ==================== -->
+<h4>Invoices</h4>
+<table class="table table-bordered">
+    <thead class="table-light">
+        <tr>
+            <th>#</th>
+            <th>Period</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Issued</th>
+            <th>Date Paid</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inv in invoices %}
+        <tr>
+            <td>{{ inv.id }}</td>
+            <td>{{ inv.period }}</td>
+            <td>${{ "{:,.0f}".format(inv.amount) }}</td>
+            <td>
+                {% if inv.status == 'paid' %}
+                <span class="badge bg-success">Paid</span>
+                {% elif inv.status == 'pending' %}
+                <span class="badge bg-warning text-dark">Pending</span>
+                {% elif inv.status == 'overdue' %}
+                <span class="badge bg-danger">Overdue</span>
+                {% else %}
+                <span class="badge bg-secondary">{{ inv.status | title }}</span>
+                {% endif %}
+            </td>
+            <td>{{ inv.issued_at }}</td>
+            <td>{{ inv.paid_at if inv.paid_at else '-' }}</td>
+            <td><button class="btn btn-outline-primary btn-sm">Download</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+
+<!-- ==================== PAYMENT METHOD + SUBSCRIPTION (side by side) ==================== -->
+<div class="row">
+    <!-- Payment Method (left column) -->
+    <div class="col-md-6">
+        <h4>Payment Method</h4>
+        {% if subscription.payment_method == 'card' %}
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">{{ subscription.card_brand }}</h6>
+                <p class="card-text">
+                    **** **** **** {{ subscription.card_last_four }}<br>
+                    Expires {{ subscription.card_exp }}
+                </p>
+            </div>
+        </div>
+        <div class="mt-2">
+            <a href="{{ url_for('payment') }}" class="btn btn-outline-primary btn-sm">Update Payment Method</a>
+        </div>
+        {% elif subscription.payment_method == 'invoice' %}
+        <p>Your account uses invoice billing. Invoices are sent to {{ customer.billing_email }}.</p>
+        {% endif %}
+    </div>
+
+    <!-- Subscription (right column) -->
+    <div class="col-md-6">
+        <h4>Subscription</h4>
+        <table class="table table-bordered">
+            <tr><td><strong>Plan</strong></td><td><span class="badge bg-primary">{{ subscription.plan | title }}</span></td></tr>
+            <tr><td><strong>Price</strong></td><td>${{ subscription.price }}/{{ subscription.billing_cycle }}</td></tr>
+            <tr><td><strong>Next Renewal</strong></td><td>{{ subscription.renews_at }}</td></tr>
+            <tr><td><strong>Billing Cycle</strong></td><td>{{ subscription.billing_cycle | title }}</td></tr>
+        </table>
+    </div>
+</div>
+
+<hr>
+
+<!-- ==================== ACCOUNT INFO ==================== -->
+<h4>Account Info</h4>
+<table class="table table-bordered">
+    <tr><td><strong>Company Name</strong></td><td>{{ customer.company_name }}</td></tr>
+    <tr><td><strong>Phone</strong></td><td>{{ customer.phone }}</td></tr>
+    <tr><td><strong>Billing Email</strong></td><td>{{ customer.billing_email }}</td></tr>
+    <tr><td><strong>Address</strong></td><td>{{ customer.address }}, {{ customer.city }}, {{ customer.state }} {{ customer.zip }}</td></tr>
+</table>
+
+<!-- ==================== ACTION BUTTONS ==================== -->
+<div class="d-flex flex-column" style="max-width: 220px;">
+    <a href="{{ url_for('account_edit') }}" class="btn btn-outline-primary btn-sm mb-2">Update Account Info</a>
+    <a href="mailto:support@nimbuspay.com" class="btn btn-outline-secondary btn-sm">Contact Support</a>
+</div>
+
+{% endblock %}

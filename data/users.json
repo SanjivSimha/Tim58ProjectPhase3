@@ -1,0 +1,107 @@
+[
+  {
+    "id": "user-1",
+    "customer_id": "cust-1",
+    "name": "David Chen",
+    "email": "dchen@riverstoneconsulting.com",
+    "role": "admin"
+  },
+  {
+    "id": "user-2",
+    "customer_id": "cust-1",
+    "name": "Sarah Martinez",
+    "email": "smartinez@riverstoneconsulting.com",
+    "role": "billing"
+  },
+  {
+    "id": "user-3",
+    "customer_id": "cust-1",
+    "name": "Kevin Park",
+    "email": "kpark@riverstoneconsulting.com",
+    "role": "viewer"
+  },
+  {
+    "id": "user-4",
+    "customer_id": "cust-1",
+    "name": "Lisa Wong",
+    "email": "lwong@riverstoneconsulting.com",
+    "role": "viewer"
+  },
+  {
+    "id": "user-5",
+    "customer_id": "cust-2",
+    "name": "Maria Santos",
+    "email": "maria@bloomandbranch.co",
+    "role": "admin"
+  },
+  {
+    "id": "user-6",
+    "customer_id": "cust-2",
+    "name": "Tom Bradley",
+    "email": "tom@bloomandbranch.co",
+    "role": "viewer"
+  },
+  {
+    "id": "user-7",
+    "customer_id": "cust-3",
+    "name": "Jennifer Adams",
+    "email": "jadams@northwindlogistics.com",
+    "role": "admin"
+  },
+  {
+    "id": "user-8",
+    "customer_id": "cust-3",
+    "name": "Robert Kim",
+    "email": "rkim@northwindlogistics.com",
+    "role": "billing"
+  },
+  {
+    "id": "user-9",
+    "customer_id": "cust-3",
+    "name": "Amanda Foster",
+    "email": "afoster@northwindlogistics.com",
+    "role": "viewer"
+  },
+  {
+    "id": "user-10",
+    "customer_id": "cust-4",
+    "name": "Jamie Taylor",
+    "email": "jamie@solofreelancer.com",
+    "role": "admin"
+  },
+  {
+    "id": "user-11",
+    "customer_id": "cust-3",
+    "name": "Daniel Cruz",
+    "email": "dcruz@northwindlogistics.com",
+    "role": "viewer"
+  },
+  {
+    "id": "user-12",
+    "customer_id": "cust-3",
+    "name": "Michelle Park",
+    "email": "mpark@northwindlogistics.com",
+    "role": "viewer"
+  },
+  {
+    "id": "user-13",
+    "customer_id": "cust-3",
+    "name": "Brian Foster",
+    "email": "bfoster@northwindlogistics.com",
+    "role": "billing"
+  },
+  {
+    "id": "user-14",
+    "customer_id": "cust-3",
+    "name": "Priya Patel",
+    "email": "ppatel@northwindlogistics.com",
+    "role": "viewer"
+  },
+  {
+    "id": "user-15",
+    "customer_id": "cust-3",
+    "name": "Marcus Johnson",
+    "email": "mjohnson@northwindlogistics.com",
+    "role": "viewer"
+  }
+]

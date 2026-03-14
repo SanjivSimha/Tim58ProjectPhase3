@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Subscription - NimbusPay{% endblock %}
+
+{% block content %}
+<h2>Subscription</h2>
+
+{% if subscription %}
+<table class="table">
+    <tr><td>Plan</td><td>{{ subscription.plan | title }}</td></tr>
+    <tr><td>Price</td><td>${{ subscription.price }}/{{ subscription.billing_cycle }}</td></tr>
+    <tr><td>Started</td><td>{{ subscription.started_at }}</td></tr>
+    <tr><td>Renews</td><td>{{ subscription.renews_at }}</td></tr>
+</table>
+
+<!-- Scary buttons visible to everyone - no role protection -->
+<div class="mt-4">
+    <button class="btn btn-outline-primary" disabled>Upgrade Plan</button>
+    <button class="btn btn-outline-secondary" disabled>Downgrade Plan</button>
+    <button class="btn btn-outline-danger" disabled>Cancel Subscription</button>
+</div>
+<small class="text-muted">Contact support to change your plan</small>
+{% else %}
+<!-- No empty state design -->
+No subscription found.
+{% endif %}
+{% endblock %}

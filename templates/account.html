@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Account - NimbusPay{% endblock %}
+
+{% block content %}
+<!-- No dashboard, no summary, just raw info -->
+<h2>Account</h2>
+
+<table class="table">
+    <tr><td>Company Name</td><td>{{ customer.company_name }}</td></tr>
+    <tr><td>Address</td><td>{{ customer.address }}</td></tr>
+    <tr><td>City</td><td>{{ customer.city }}</td></tr>
+    <tr><td>State</td><td>{{ customer.state }}</td></tr>
+    <tr><td>ZIP</td><td>{{ customer.zip }}</td></tr>
+    <tr><td>Billing Email</td><td>{{ customer.billing_email }}</td></tr>
+    <tr><td>Phone</td><td>{{ customer.phone }}</td></tr>
+</table>
+
+<a href="{{ url_for('account_edit') }}" class="btn btn-primary">Edit</a>
+{% endblock %}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "cust-1",
+    "company_name": "Riverstone Consulting",
+    "address": "450 Market St, Suite 200",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94102",
+    "billing_email": "billing@riverstoneconsulting.com",
+    "phone": "415-555-0100"
+  },
+  {
+    "id": "cust-2",
+    "company_name": "Bloom & Branch Design",
+    "address": "88 Pine Street",
+    "city": "Portland",
+    "state": "OR",
+    "zip": "97201",
+    "billing_email": "maria@bloomandbranch.co",
+    "phone": "503-555-0200"
+  },
+  {
+    "id": "cust-3",
+    "company_name": "Northwind Logistics",
+    "address": "2200 Industrial Parkway",
+    "city": "Chicago",
+    "state": "IL",
+    "zip": "60612",
+    "billing_email": "ap@northwindlogistics.com",
+    "phone": "312-555-0300"
+  },
+  {
+    "id": "cust-4",
+    "company_name": "Solo Freelancer LLC",
+    "address": "123 Home Office Lane",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78701",
+    "billing_email": "jamie@solofreelancer.com",
+    "phone": "512-555-0400"
+  }
+]

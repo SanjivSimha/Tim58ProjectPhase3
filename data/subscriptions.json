@@ -1,0 +1,54 @@
+[
+  {
+    "id": "sub-1",
+    "customer_id": "cust-1",
+    "plan": "business",
+    "price": 299,
+    "billing_cycle": "monthly",
+    "started_at": "2023-06-15",
+    "renews_at": "2026-02-15",
+    "payment_method": "card",
+    "card_last_four": "4242",
+    "card_brand": "Visa",
+    "card_exp": "12/26"
+  },
+  {
+    "id": "sub-2",
+    "customer_id": "cust-2",
+    "plan": "starter",
+    "price": 49,
+    "billing_cycle": "monthly",
+    "started_at": "2024-08-01",
+    "renews_at": "2026-02-01",
+    "payment_method": "card",
+    "card_last_four": "1234",
+    "card_brand": "Mastercard",
+    "card_exp": "08/25"
+  },
+  {
+    "id": "sub-3",
+    "customer_id": "cust-3",
+    "plan": "enterprise",
+    "price": 799,
+    "billing_cycle": "annual",
+    "started_at": "2024-01-01",
+    "renews_at": "2026-01-01",
+    "payment_method": "invoice",
+    "card_last_four": null,
+    "card_brand": null,
+    "card_exp": null
+  },
+  {
+    "id": "sub-4",
+    "customer_id": "cust-4",
+    "plan": "starter",
+    "price": 49,
+    "billing_cycle": "monthly",
+    "started_at": "2025-01-10",
+    "renews_at": "2026-01-10",
+    "payment_method": "card",
+    "card_last_four": "5678",
+    "card_brand": "Visa",
+    "card_exp": "03/27"
+  }
+]

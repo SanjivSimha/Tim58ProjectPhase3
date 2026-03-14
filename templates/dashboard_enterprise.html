@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - NimbusPay{% endblock %}
+
+{% block content %}
+<h2>Dashboard</h2>
+<p class="text-muted">Welcome back, {{ user.name }}, here is your account overview.</p>
+
+<hr>
+
+<!-- ==================== ACCOUNT SUMMARY (top priority) ==================== -->
+<h4>Account Summary</h4>
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <p class="mb-1"><strong>Plan:</strong> <span class="badge bg-primary">{{ subscription.plan | title }}</span></p>
+                <p class="mb-0"><strong>Next Renewal:</strong> {{ subscription.renews_at }}</p>
+            </div>
+            <div class="col-md-8">
+                <p class="mb-1"><strong>Invoice Status</strong></p>
+                <p class="mb-0">
+                    {% set overdue_count = invoices | selectattr('status', 'equalto', 'overdue') | list | length %}
+                    {% set pending_count = invoices | selectattr('status', 'equalto', 'pending') | list | length %}
+                    {% set paid_count = invoices | selectattr('status', 'equalto', 'paid') | list | length %}
+                    <span class="badge bg-danger me-2">Overdue: {{ overdue_count }}</span>
+                    <span class="badge bg-warning text-dark me-2">Pending: {{ pending_count }}</span>
+                    <span class="badge bg-success">Paid: {{ paid_count }}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- ==================== TEAM MANAGEMENT ==================== -->
+<h4>Team Management</h4>
+<p><strong>Members: {{ team | length }}</strong></p>
+
+<table class="table table-bordered" id="teamTable">
+    <thead class="table-light">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in team[:5] %}
+        <tr class="team-row-visible">
+            <td>{{ member.name }}{% if member.id == user.id %} (you){% endif %}</td>
+            <td>{{ member.email }}</td>
+            <td>
+                <span class="badge {% if member.role == 'admin' %}bg-danger{% elif member.role == 'billing' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">
+                    {{ member.role | title }}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+        {% for member in team[5:] %}
+        <tr class="team-row-hidden" style="display: none;">
+            <td>{{ member.name }}{% if member.id == user.id %} (you){% endif %}</td>
+            <td>{{ member.email }}</td>
+            <td>
+                <span class="badge {% if member.role == 'admin' %}bg-danger{% elif member.role == 'billing' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">
+                    {{ member.role | title }}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if team | length > 5 %}
+<div class="mb-2">
+    <button class="btn btn-link btn-sm p-0" id="expandTeamBtn" onclick="toggleTeamRows()">
+        Expand ({{ team | length - 5 }} more)
+    </button>
+</div>
+{% endif %}
+
+<div class="mb-3">
+    <button class="btn btn-success btn-sm">Add Member</button>
+    <button class="btn btn-danger btn-sm">Remove</button>
+    <button class="btn btn-outline-primary btn-sm">Change Role</button>
+</div>
+
+<hr>
+
+<!-- ==================== INVOICES ==================== -->
+<h4>Invoices</h4>
+<form>
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th style="width: 30px;"><input type="checkbox" id="selectAll" onclick="toggleAll(this)"></th>
+                <th>Invoice</th>
+                <th>Period</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Issued</th>
+                <th>Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inv in invoices %}
+            <tr>
+                <td><input type="checkbox" class="invoice-checkbox" value="{{ inv.id }}"></td>
+                <td>{{ inv.id }}</td>
+                <td>{{ inv.period }}</td>
+                <td>${{ "{:,.0f}".format(inv.amount) }}</td>
+                <td>
+                    {% if inv.status == 'paid' %}
+                    <span class="badge bg-success">Paid</span>
+                    {% elif inv.status == 'pending' %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                    {% elif inv.status == 'overdue' %}
+                    <span class="badge bg-danger">Overdue</span>
+                    {% else %}
+                    <span class="badge bg-secondary">{{ inv.status | title }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ inv.issued_at }}</td>
+                <td>{{ inv.paid_at if inv.paid_at else '-' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-outline-primary btn-sm">Download</button>
+</form>
+
+<hr>
+
+<!-- ==================== SUBSCRIPTION + CONTACT SUPPORT ==================== -->
+<div class="row">
+    <div class="col-md-6">
+        <h4>Subscription</h4>
+        <table class="table table-bordered">
+            <tr><td><strong>Plan Name</strong></td><td><span class="badge bg-primary">{{ subscription.plan | title }}</span></td></tr>
+            <tr><td><strong>Price</strong></td><td>${{ subscription.price }}/{{ subscription.billing_cycle }}</td></tr>
+            <tr><td><strong>Billing Cycle</strong></td><td>{{ subscription.billing_cycle | title }}</td></tr>
+            <tr><td><strong>Billing Email</strong></td><td>{{ customer.billing_email }}</td></tr>
+            <tr><td><strong>Next Renewal</strong></td><td>{{ subscription.renews_at }}</td></tr>
+        </table>
+    </div>
+    <div class="col-md-6 d-flex align-items-start pt-5">
+        <a href="mailto:support@nimbuspay.com" class="btn btn-outline-secondary">Contact Support</a>
+    </div>
+</div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+function toggleTeamRows() {
+    const hiddenRows = document.querySelectorAll('.team-row-hidden');
+    const btn = document.getElementById('expandTeamBtn');
+    const isHidden = hiddenRows[0] && hiddenRows[0].style.display === 'none';
+
+    hiddenRows.forEach(row => {
+        row.style.display = isHidden ? '' : 'none';
+    });
+    btn.textContent = isHidden ? 'Collapse' : 'Expand ({{ team | length - 5 }} more)';
+}
+
+function toggleAll(source) {
+    const checkboxes = document.querySelectorAll('.invoice-checkbox');
+    checkboxes.forEach(cb => cb.checked = source.checked);
+}
+</script>
+
+{% endblock %}

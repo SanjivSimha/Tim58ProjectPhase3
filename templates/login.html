@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Login - NimbusPay{% endblock %}
+
+{% block public_content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">NimbusPay Customer Portal</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">Select a user to continue:</p>
+                <form method="POST" action="{{ url_for('set_user') }}">
+                    <div class="mb-3">
+                        <select name="user_id" class="form-select" required>
+                            <option value="">-- Select User --</option>
+                            {% for user in users %}
+                            <option value="{{ user.id }}">{{ user.name }} - {{ customers[user.customer_id].company_name }} ({{ subscriptions[user.customer_id].plan | title }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "INV-2025-0201",
+    "customer_id": "cust-1",
+    "amount": 299,
+    "status": "pending",
+    "issued_at": "2025-02-01",
+    "paid_at": null,
+    "period": "February 2025"
+  },
+  {
+    "id": "INV-2025-0101",
+    "customer_id": "cust-1",
+    "amount": 299,
+    "status": "paid",
+    "issued_at": "2025-01-01",
+    "paid_at": "2025-01-01",
+    "period": "January 2025"
+  },
+  {
+    "id": "INV-2024-1201",
+    "customer_id": "cust-1",
+    "amount": 299,
+    "status": "paid",
+    "issued_at": "2024-12-01",
+    "paid_at": "2024-12-01",
+    "period": "December 2024"
+  },
+  {
+    "id": "INV-2024-1101",
+    "customer_id": "cust-1",
+    "amount": 299,
+    "status": "paid",
+    "issued_at": "2024-11-01",
+    "paid_at": "2024-11-02",
+    "period": "November 2024"
+  },
+  {
+    "id": "INV-2024-1001",
+    "customer_id": "cust-1",
+    "amount": 299,
+    "status": "paid",
+    "issued_at": "2024-10-01",
+    "paid_at": "2024-10-01",
+    "period": "October 2024"
+  },
+  {
+    "id": "INV-2024-0901",
+    "customer_id": "cust-1",
+    "amount": 299,
+    "status": "paid",
+    "issued_at": "2024-09-01",
+    "paid_at": "2024-09-01",
+    "period": "September 2024"
+  },
+  {
+    "id": "INV-2025-0102",
+    "customer_id": "cust-2",
+    "amount": 49,
+    "status": "paid",
+    "issued_at": "2025-01-01",
+    "paid_at": "2025-01-01",
+    "period": "January 2025"
+  },
+  {
+    "id": "INV-2024-1202",
+    "customer_id": "cust-2",
+    "amount": 49,
+    "status": "paid",
+    "issued_at": "2024-12-01",
+    "paid_at": "2024-12-01",
+    "period": "December 2024"
+  },
+  {
+    "id": "INV-2024-1102",
+    "customer_id": "cust-2",
+    "amount": 49,
+    "status": "paid",
+    "issued_at": "2024-11-01",
+    "paid_at": "2024-11-01",
+    "period": "November 2024"
+  },
+  {
+    "id": "INV-2024-1002",
+    "customer_id": "cust-2",
+    "amount": 49,
+    "status": "paid",
+    "issued_at": "2024-10-01",
+    "paid_at": "2024-10-01",
+    "period": "October 2024"
+  },
+  {
+    "id": "INV-2026-0103",
+    "customer_id": "cust-3",
+    "amount": 9588,
+    "status": "overdue",
+    "issued_at": "2026-01-01",
+    "paid_at": null,
+    "period": "2026 Annual"
+  },
+  {
+    "id": "INV-2025-0103",
+    "customer_id": "cust-3",
+    "amount": 9588,
+    "status": "paid",
+    "issued_at": "2025-01-01",
+    "paid_at": "2025-01-15",
+    "period": "2025 Annual"
+  },
+  {
+    "id": "INV-2024-0103",
+    "customer_id": "cust-3",
+    "amount": 9588,
+    "status": "paid",
+    "issued_at": "2024-01-01",
+    "paid_at": "2024-01-12",
+    "period": "2024 Annual"
+  },
+  {
+    "id": "INV-2025-0104",
+    "customer_id": "cust-4",
+    "amount": 49,
+    "status": "paid",
+    "issued_at": "2025-01-10",
+    "paid_at": "2025-01-10",
+    "period": "January 2025"
+  },
+  {
+    "id": "INV-2024-1204",
+    "customer_id": "cust-4",
+    "amount": 49,
+    "status": "paid",
+    "issued_at": "2024-12-10",
+    "paid_at": "2024-12-10",
+    "period": "December 2024"
+  },
+  {
+    "id": "INV-2024-1104",
+    "customer_id": "cust-4",
+    "amount": 49,
+    "status": "paid",
+    "issued_at": "2024-11-10",
+    "paid_at": "2024-11-10",
+    "period": "November 2024"
+  }
+]

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Team - NimbusPay{% endblock %}
+
+{% block content %}
+<h2>Team</h2>
+
+<!-- No empty state handling - solo users see a sad single row -->
+<!-- No way to add or remove team members -->
+<!-- Roles shown but not enforced -->
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in team %}
+        <tr>
+            <td>{{ member.name }}</td>
+            <td>{{ member.email }}</td>
+            <td>{{ member.role }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- No add/remove buttons - that's the missing feature -->
+{% endblock %}

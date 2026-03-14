@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Billing - NimbusPay{% endblock %}
+
+{% block content %}
+<h2>Billing</h2>
+
+<!-- No way to download invoices - major missing feature -->
+
+{% if invoices %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Invoice #</th>
+            <th>Period</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Issued</th>
+            <th>Paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inv in invoices %}
+        <tr>
+            <td>{{ inv.id }}</td>
+            <td>{{ inv.period }}</td>
+            <td>${{ "{:,.0f}".format(inv.amount) }}</td>
+            <td>
+                {% if inv.status == 'paid' %}
+                <span class="badge bg-success">Paid</span>
+                {% else %}
+                <span class="badge bg-warning text-dark">{{ inv.status }}</span>
+                {% endif %}
+            </td>
+            <td>{{ inv.issued_at }}</td>
+            <td>{{ inv.paid_at if inv.paid_at else '-' }}</td>
+            <!-- No download link/button -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<!-- No helpful empty state -->
+No invoices.
+{% endif %}
+{% endblock %}
